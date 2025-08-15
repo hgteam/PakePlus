@@ -1,0 +1,147 @@
+/* Zib BBS Custom Buttons Frontend Styles */
+
+/* 自定义按钮基础样式 */
+.zib-custom-btn-image,
+.zib-custom-btn-link {
+    position: relative;
+    display: inline-block;
+}
+
+/* 图片悬停按钮样式 */
+.zib-custom-btn-image.hover-show {
+    cursor: pointer;
+}
+
+/* 悬停显示容器样式 - 参考zib主题的微信二维码样式 */
+.zib-custom-btn-image .hover-show-con {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    min-width: 150px;
+    max-width: 250px;
+    background: #fff;
+    border: 1px solid #e1e5e9;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+/* 深色主题下的样式 */
+.dark-theme .zib-custom-btn-image .hover-show-con {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #e2e8f0;
+}
+
+/* 悬停时显示 */
+.zib-custom-btn-image:hover .hover-show-con {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* 悬停容器内的图片样式 */
+.zib-custom-btn-image .hover-show-con img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+}
+
+/* 图片描述文字样式 */
+.zib-custom-btn-image .hover-show-con .muted-color {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 6px;
+    color: #6c757d;
+}
+
+.dark-theme .zib-custom-btn-image .hover-show-con .muted-color {
+    color: #a0aec0;
+}
+
+/* 悬停容器的箭头指示器 */
+.zib-custom-btn-image .hover-show-con::before {
+    content: '';
+    position: absolute;
+    top: 147px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #fff;
+}
+
+.dark-theme .zib-custom-btn-image .hover-show-con::before {
+    border-bottom-color: #2d3748;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .zib-custom-btn-image .hover-show-con {
+        position: fixed;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        margin-top: 0;
+        max-width: 90vw;
+        max-height: 80vh;
+        overflow: auto;
+    }
+    
+    .zib-custom-btn-image .hover-show-con::before {
+        display: none;
+    }
+    
+    /* 移动端点击显示/隐藏 */
+    .zib-custom-btn-image .hover-show-con {
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .zib-custom-btn-image.mobile-show .hover-show-con {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* 懒加载图片样式 */
+.zib-custom-btn-image .hover-show-con img.lazyload {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.zib-custom-btn-image .hover-show-con img.lazyloaded {
+    opacity: 1;
+}
+
+/* 加载中状态 */
+.zib-custom-btn-image .hover-show-con .loading {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+}
+
+/* 确保按钮在悬停时不会被遮挡 */
+.moderator-btns {
+    position: relative;
+    z-index: 1;
+}
+
+.zib-custom-btn-image {
+    z-index: 2;
+}
+
+.zib-custom-btn-image:hover {
+    z-index: 1001;
+}
+
