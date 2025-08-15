@@ -1,0 +1,155 @@
+/* Zib BBS Custom Buttons Frontend JavaScript */
+
+jQuery(document).ready(function($) {
+    
+    // 移动端图片悬停按钮点击处理
+    if (window.innerWidth <= 768) {
+        $('.zib-custom-btn-image.hover-show').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            var $this = $(this);
+            var $hoverCon = $this.find('.hover-show-con');
+            
+            // 关闭其他已打开的悬停容器
+            $('.zib-custom-btn-image').removeClass('mobile-show');
+            
+            // 切换当前容器的显示状态
+            $this.toggleClass('mobile-show');
+            
+            // 如果显示了容器，添加点击外部关闭的事件
+            if ($this.hasClass('mobile-show')) {
+                setTimeout(function() {
+                    $(document).on('click.customBtnClose', function(e) {
+                        if (!$hoverCon.is(e.target) && $hoverCon.has(e.target).length === 0) {
+                            $this.removeClass('mobile-show');
+                            $(document).off('click.customBtnClose');
+                        }
+                    });
+                }, 100);
+            }
+        });
+        
+        // 阻止悬停容器内的点击事件冒泡
+        $('.zib-custom-btn-image .hover-show-con').on('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+    
+    // 懒加载图片处理
+    function handleLazyImages() {
+        $('.zib-custom-btn-image .hover-show-con img.lazyload').each(function() {
+            var $img = $(this);
+            var src = $img.attr('data-src');
+            
+            if (src) {
+                $img.attr('src', src);
+                $img.removeClass('lazyload').addClass('lazyloaded');
+            }
+        });
+    }
+    
+    // 当悬停容器显示时加载图片
+    $('.zib-custom-btn-image').on('mouseenter', function() {
+        handleLazyImages();
+    });
+    
+    // 移动端点击时也加载图片
+    $('.zib-custom-btn-image').on('click', function() {
+        handleLazyImages();
+    });
+    
+    // 图片加载错误处理
+    $('.zib-custom-btn-image .hover-show-con img').on('error', function() {
+        var $img = $(this);
+        var $container = $img.closest('.hover-show-con');
+        
+        $img.hide();
+        $container.append('<div class="image-error" style="text-align: center; padding: 20px; color: #dc3545;">图片加载失败</div>');
+    });
+    
+    // 确保悬停容器不会超出屏幕边界
+    function adjustHoverPosition() {
+        $('.zib-custom-btn-image .hover-show-con').each(function() {
+            var $con = $(this);
+            var $btn = $con.closest('.zib-custom-btn-image');
+            
+            // 重置位置
+            $con.css({
+                'left': '50%',
+                'right': 'auto',
+                'transform': 'translateX(-50%)'
+            });
+            
+            // 检查是否超出右边界
+            var conRect = $con[0].getBoundingClientRect();
+            var windowWidth = window.innerWidth;
+            
+            if (conRect.right > windowWidth - 10) {
+                $con.css({
+                    'left': 'auto',
+                    'right': '0',
+                    'transform': 'none'
+                });
+            }
+            
+            // 检查是否超出左边界
+            if (conRect.left < 10) {
+                $con.css({
+                    'left': '0',
+                    'right': 'auto',
+                    'transform': 'none'
+                });
+            }
+        });
+    }
+    
+    // 悬停时调整位置
+    $('.zib-custom-btn-image').on('mouseenter', function() {
+        var $this = $(this);
+        setTimeout(function() {
+            adjustHoverPosition();
+        }, 10);
+    });
+    
+    // 窗口大小改变时重新调整
+    $(window).on('resize', function() {
+        adjustHoverPosition();
+    });
+    
+    // 支持键盘导航
+    $('.zib-custom-btn-image').on('keydown', function(e) {
+        if (e.keyCode === 13 || e.keyCode === 32) { // Enter 或 Space
+            e.preventDefault();
+            $(this).trigger('click');
+        }
+        
+        if (e.keyCode === 27) { // Escape
+            $(this).removeClass('mobile-show');
+        }
+    });
+    
+    // 添加无障碍属性
+    $('.zib-custom-btn-image.hover-show').attr({
+        'role': 'button',
+        'tabindex': '0',
+        'aria-haspopup': 'true',
+        'aria-expanded': 'false'
+    });
+    
+    // 更新 aria-expanded 状态
+    $('.zib-custom-btn-image').on('mouseenter click', function() {
+        $(this).attr('aria-expanded', 'true');
+    }).on('mouseleave', function() {
+        if (!$(this).hasClass('mobile-show')) {
+            $(this).attr('aria-expanded', 'false');
+        }
+    });
+    
+    // 移动端关闭时更新 aria-expanded
+    $(document).on('click.customBtnClose', function() {
+        $('.zib-custom-btn-image').attr('aria-expanded', 'false');
+    });
+    
+});
+
