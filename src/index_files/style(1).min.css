@@ -1,0 +1,12 @@
+/**
+ * @Plugin Name:炙焰授权插件
+ * @Plugin URI:https://www.zhiyanx.cn/
+ * @Author: 炙焰
+ * @Author URI: https://www.zhiyanx.cn/
+ * @Date: 2023-12-31 19:59:12
+ * @LastEditors: 炙焰
+ * @LastEditTime: 2024-01-10 07:53:08
+ * @Description: 感谢您使用炙焰授权插件，插件源码有详细的注释，支持二次开发。
+ */
+ 
+.single-product .products-container{margin-top:-21px}.zyxw{height:120px;margin-right:8px;width:calc(45% - 11px);display:inline-block}.zyxsw{height:120px;margin-left:8px;width:calc(55% - 11px);display:inline-block}@media (max-width:640px){.zyxw{height:120px;width:calc(100% - 0px);display:inline-block;margin-right:0px}.zyxsw{height:120px;width:calc(100% - 0px);display:inline-block;margin-left:0px}}.single-product .products-box{padding:60px 0;color:#fff;margin-bottom:20px;overflow:hidden;background:linear-gradient(135deg,#88c0fd 10%,#0757af 100%)}.single-product .products-background{background:linear-gradient(135deg,#28b1bb 0%,#5038c8 100%)}.single-product .products-box .products-row{padding:0 20px;max-width:1400px;margin:auto}.single-product .products-row .payrow-6{padding:0 10px;display:inline-block;vertical-align:middle;width:calc(50% - 10px)}@media (max-width:768px){.single-product .products-row .payrow-6{padding:10px;width:100%}.single-product .products-box .products-row{text-align:center}.single-product .products-details{margin:auto}}.single-product .pay-content{max-width:400px;margin:auto}.single-product .products-header{font-size:50px;letter-spacing:.1em}.single-product .products-doc{opacity:.8;margin:20px 0}.single-product .more-but{margin-top:30px}.single-product .more-but .but.hollow{margin:0 10px;padding:0.5em 1.5em;margin:0 10px}.single-product .products-pay{margin:20px 0}.single-product .products-pay .but{padding:0.5em 2em;margin:0}.single-product .products-pay .but+.but{margin-left:20px}.single-product .products-details{background:rgba(0,0,0,0.1);opacity:.6;max-width:300px;text-align:left}.single-product .pay-content .share-btn text{display:none}.zyx-badge-text {position: relative;overflow: hidden;border-radius: 5px;border: 1px solid #ccc;display: inline-flex;align-items: center;justify-content: center;color: #ffffff;font-size: 12px;height: 18px;line-height: 1.5;padding: 4px;margin-right: 3px;}.zyx-badge-text:after {position: absolute;content: " ";display: block;left: -100%;top: -5px;width: 15px;height: 145%;background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));animation: sweepTitle 3s ease-in-out infinite;transform: rotate(28deg);}
